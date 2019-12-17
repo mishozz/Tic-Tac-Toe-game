@@ -28,6 +28,7 @@ protected:
 	int getTurnCount()const { return turnCount; }
 public:
 	Game():turnCount(0){}
+	virutal void startGame() = 0;
 };
 
 #endif 

@@ -1,6 +1,5 @@
 #include "MultiPlayerGame.h"
 #include "SinglePlayerGame.hpp"
-#include <cstring>
 #include <string>
 using namespace std;
 
@@ -11,29 +10,37 @@ void inputValidCommand(string& command) {
 	do
 	{
 		cin >> command;
-		if (command != EXIT || command != RESTART) {
+		if (command != EXIT && command != RESTART) {
 			cout << "Please enter a valid command! ";
 		}
 	} while (command != EXIT && command != RESTART);
 }
 
-
+ 
 int main() {
 	
 	string command;
 		while (command != EXIT) {
-			MultiPlayer* game = new MultiPlayer;
-			game->startGame();
-			delete game;
-			cout << "Type exit in the console if you want to close the game or restart to play again! : ";
-			inputValidCommand(command);
+			string key;
+			cout << "Press M to play Multiplayer or any other key to play vs the computer!: ";
+			cin >> key;
+			if (key == "M") {
+				MultiPlayer* game = new MultiPlayer;
+				game->startGame();
+				delete game;
+				cout << "Type exit in the console if you want to close the game or restart to play again! : ";
+				inputValidCommand(command);
+				system("CLS");
+			}
+			else {
+				SinglePlayer* game = new SinglePlayer;
+				game->startGame();
+				delete game;
+				cout << "Type exit in the console if you want to close the game or restart to play again! : ";
+				inputValidCommand(command);
+				system("CLS");
+			}		
 		}
 	
-	
-	
-
-	SinglePlayer game;
-	game.startGame();
-
 	return 0;
 }
